@@ -6,7 +6,6 @@ urllib3.disable_warnings()
 BASE_URL = "https://servicebus2.caixa.gov.br/portaldeloterias/api/resultados/download"
 
 jogos_list = [
-    "Teste",
     "+Milionária",
     "Mega-Sena",
     "Lotofácil",
@@ -30,7 +29,7 @@ for jogo in jogos_list:
             print(f"{jogo}.xlsx baixado.")
         continue
 
-    raise Exception("Requisição falhou")
+    raise Exception(f"Requisição falhou em {jogo}")
 
 
 # verify = False: erro de certificação no https da página. Usa verify para não fazer verificação de certificado e ignorar o erro.
