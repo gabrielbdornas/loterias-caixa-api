@@ -56,7 +56,11 @@ resources:
             maximum: 60.0
             required: true
         - name: Ganhadores 6 acertos
-          type: any
+          type: number
+          decimalChar: ","
+          groupChar: "."
+          bareNumber: true
+          format: "^R$"
         - name: Cidade / UF
           type: any
         - name: Rateio 6 acertos
