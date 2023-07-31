@@ -1,19 +1,26 @@
 from flask import Flask
 from flask_migrate import Migrate
-from .models import configure_db, configure_ma
+
+from app.config import config
+from app.db import db
+from app.routes import api_bp
+
+migrate = Migrate()
 
 
-def create_app():
+def create_app() -> Flask:
+    """
+    Cria a aplicação principal.
+
+    TODO: Passar configuração da aplicação como argumento da função para facilitar testes.
+    """
+
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config.from_object(config)
 
-    configure_db(app)
-    configure_ma(app)
+    db.init_app(app=app)
+    migrate.init_app(app=app, db=db)
 
-    Migrate(app, app.db)
-
-    # from .routes import recipient
-    # app.register_blueprint(recipient.blueprints)
+    app.register_blueprint(api_bp, url_prefix="/api/v1")
 
     return app

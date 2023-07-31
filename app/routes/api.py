@@ -1,0 +1,11 @@
+from flask import Blueprint
+
+api_bp = Blueprint("api", __name__)
+
+
+@api_bp.get("/healthz")
+def health_check():
+    """
+    Exemplo de rota de api.
+    """
+    return {"status": "online"}
