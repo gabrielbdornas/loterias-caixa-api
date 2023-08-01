@@ -1,9 +1,9 @@
 resources:
   - name: mega-sena
     type: table
-    path: jogos/Mega-Sena.xlsx
+    path: jogos/Mega-Sena.csv
     scheme: file
-    format: xlsx
+    format: csv
     mediatype: application/vnd.ms-excel
     encoding: utf-8
     dialect:
