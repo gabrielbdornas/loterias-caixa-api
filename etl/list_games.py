@@ -11,7 +11,7 @@ jogos_list = [
     "Mega-Sena",
     "Lotofácil",
     "Quina",
-    "Lotomania",
+#    "Lotomania",
     "Timemania",
     "Dupla-Sena",
     "Federal",
@@ -27,8 +27,13 @@ for jogo in jogos_list:
     if res.status_code == 200:
         with open(f'./data/excel/{jogo}.xlsx', 'wb') as file:
             file.write(res.content)
-            
-            df = pd.read_excel(f'./data/excel/{jogo}.xlsx', index_col=0)
+
+            df = pd.read_excel(f'./data/excel/{jogo}.xlsx')
+            # if jogo == "Lotomania":
+            #     import ipdb; ipdb.set_trace(context=10)
+
+
+
             df.to_csv(f'./data/csv/{jogo}.csv')
 
             print(f'{jogo}.xlsx baixado.')
