@@ -1,5 +1,3 @@
-from typing import Type, Self, Optional
-
 from sqlalchemy import select
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -39,7 +37,7 @@ class Base(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
     @classmethod
-    def find_by_id(cls: Type[Self], id: int) -> Optional[Self]:
+    def find_by_id(cls, id: int):
         """
         Busca um objeto com base no `id`.
         """

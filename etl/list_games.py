@@ -29,10 +29,9 @@ for jogo in jogos_list:
             file.write(res.content)
 
             df = pd.read_excel(f'./data/excel/{jogo}.xlsx')
+
             # if jogo == "Lotomania":
             #     import ipdb; ipdb.set_trace(context=10)
-
-
 
             df.to_csv(f'./data/csv/{jogo}.csv')
 
