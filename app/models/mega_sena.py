@@ -1,19 +1,12 @@
 from .base import Base
-from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy.orm import Session
-from sqlalchemy import create_engine
-import pandas as pd
-
-
-class Base(DeclarativeBase):
-    pass
+from pandas import Series
 
 
 class MegaSena(Base):
     __tablename__ = "mega_sena"
 
-    concurso: Mapped[int] = mapped_column(primary_key=True)
+    concurso: Mapped[int] = mapped_column(unique=True)
     data_do_sorteio: Mapped[str] = mapped_column(nullable=True)
     bola1: Mapped[int] = mapped_column(nullable=True)
     bola2: Mapped[int] = mapped_column(nullable=True)
@@ -36,18 +29,8 @@ class MegaSena(Base):
     )
     observacao: Mapped[str] = mapped_column(nullable=True)
 
-
-engine = create_engine("sqlite:///mydb.db", echo=True)
-Base.metadata.create_all(engine)
-
-with Session(engine) as session:
-    df = pd.read_csv("../../data/csv/Mega-Sena.csv", index_col=0)
-    # print(df)
-
-    for index, row in df.iterrows():
-        # print(f"index: {index}, row: {row}")
-        # break
-        data = MegaSena(
+    def from_csv(index: int, row: Series):
+        return MegaSena(
             concurso=index,
             data_do_sorteio=row["Data do Sorteio"],
             bola1=row["Bola1"],
@@ -71,6 +54,3 @@ with Session(engine) as session:
             ],
             observacao=row["Observação"],
         )
-        session.add(data)
-
-    session.commit()

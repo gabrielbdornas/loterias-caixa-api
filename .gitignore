@@ -397,6 +397,8 @@ _pkginfo.txt
 # but keep track of directories ending in .cache
 !?*.[Cc]ache/
 
+*.db
+
 # Others
 ClientBin/
 ~$*
