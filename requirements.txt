@@ -31,3 +31,7 @@ python-dotenv==1.0.0
 SQLAlchemy==2.0.19
 typing_extensions==4.7.1
 Werkzeug==2.3.6
+urllib3
+requests
+pandas
+frictionless
