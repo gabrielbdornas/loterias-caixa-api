@@ -9,7 +9,7 @@ seed_cli = AppGroup("seed")
 
 
 @seed_cli.command("mega-sena")
-@click.option("--file_path", default=MEGA_SENA_PATH)
+# @click.option("--file_path", default=MEGA_SENA_PATH)
 def seed_mega_sena():
     # print("Ler e inserir dados mega sena")
     df = pd.read_csv(MEGA_SENA_PATH, index_col=0)

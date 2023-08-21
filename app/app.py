@@ -15,6 +15,11 @@ def create_app() -> Flask:
     Cria a aplicação principal.
 
     TODO: Passar configuração da aplicação como argumento da função para facilitar testes.
+
+    Rodar no terminal:
+    `flask db migrate` cria os arquivos na pasta migrations com a estrutura das models (pega criações ou alterações de models e gera os arquivos para poder aplicar).
+
+    `flask db upgrade` para aplicar os scripts na pasta migrations.
     """
 
     app = Flask(__name__)

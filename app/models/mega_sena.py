@@ -1,4 +1,5 @@
 from .base import Base
+from typing import Optional
 from sqlalchemy.orm import Mapped, mapped_column
 from pandas import Series
 
@@ -7,30 +8,30 @@ class MegaSena(Base):
     __tablename__ = "mega_sena"
 
     concurso: Mapped[int] = mapped_column(unique=True)
-    data_do_sorteio: Mapped[str] = mapped_column(nullable=True)
-    bola1: Mapped[int] = mapped_column(nullable=True)
-    bola2: Mapped[int] = mapped_column(nullable=True)
-    bola3: Mapped[int] = mapped_column(nullable=True)
-    bola4: Mapped[int] = mapped_column(nullable=True)
-    bola5: Mapped[int] = mapped_column(nullable=True)
-    bola6: Mapped[int] = mapped_column(nullable=True)
-    ganhadores_6_acertos: Mapped[int] = mapped_column(nullable=True)
-    cidade_uf: Mapped[str] = mapped_column(nullable=True)
-    rateio_6_acertos: Mapped[str] = mapped_column(nullable=True)
-    ganhadores_5_acertos: Mapped[int] = mapped_column(nullable=True)
-    rateio_5_acertos: Mapped[str] = mapped_column(nullable=True)
-    ganhadores_4_acertos: Mapped[int] = mapped_column(nullable=True)
-    rateio_4_acertos: Mapped[str] = mapped_column(nullable=True)
-    acumulado_6_acertos: Mapped[str] = mapped_column(nullable=True)
-    arrecadacao_total: Mapped[str] = mapped_column(nullable=True)
-    estimativa_premio: Mapped[str] = mapped_column(nullable=True)
-    acumulado_sorteio_especial_mega_da_virada: Mapped[str] = mapped_column(
-        nullable=True
-    )
-    observacao: Mapped[str] = mapped_column(nullable=True)
+    data_do_sorteio: Mapped[Optional[str]]  # fazer o parse dessa data
+    bola1: Mapped[Optional[int]]
+    bola2: Mapped[Optional[int]]
+    bola3: Mapped[Optional[int]]
+    bola4: Mapped[Optional[int]]
+    bola5: Mapped[Optional[int]]
+    bola6: Mapped[Optional[int]]
+    ganhadores_6_acertos: Mapped[Optional[int]]
+    cidade_uf: Mapped[Optional[str]]
+    rateio_6_acertos: Mapped[Optional[str]]
+    ganhadores_5_acertos: Mapped[Optional[int]]
+    rateio_5_acertos: Mapped[Optional[str]]
+    ganhadores_4_acertos: Mapped[Optional[int]]
+    rateio_4_acertos: Mapped[Optional[str]]
+    acumulado_6_acertos: Mapped[Optional[str]]
+    arrecadacao_total: Mapped[Optional[str]]
+    estimativa_premio: Mapped[Optional[str]]
+    acumulado_sorteio_especial_mega_da_virada: Mapped[Optional[str]]
+    observacao: Mapped[Optional[str]]
 
-    def from_csv(index: int, row: Series):
-        return MegaSena(
+    # Retorna instância da própria classe para salvar no banco
+    @classmethod
+    def from_csv(cls, index: int, row: Series):
+        return cls(
             concurso=index,
             data_do_sorteio=row["Data do Sorteio"],
             bola1=row["Bola1"],
