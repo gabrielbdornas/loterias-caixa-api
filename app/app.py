@@ -3,6 +3,7 @@ from flask_migrate import Migrate
 from app.models.mega_sena import MegaSena
 
 from app.config import config
+from app.cli import seed_cli
 from app.db import db
 from app.routes import api_bp
 
@@ -23,5 +24,7 @@ def create_app() -> Flask:
     migrate.init_app(app=app, db=db)
 
     app.register_blueprint(api_bp, url_prefix="/api/v1")
+
+    app.cli.add_command(seed_cli)
 
     return app
