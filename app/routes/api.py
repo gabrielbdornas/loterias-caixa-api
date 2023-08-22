@@ -16,7 +16,7 @@ def health_check():
 
 @api_bp.get("/mega-senas")
 def get_mega_sena():
-    mega_sena = model.MegaSena()
+    mega_sena = MegaSena()
     mega_senas = mega_sena.query.all()
     schemas = schema.MegaSenaSchema(many=True)
     return jsonify(schemas.dump(mega_senas)), 200
