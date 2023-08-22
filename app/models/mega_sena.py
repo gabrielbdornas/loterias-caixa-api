@@ -28,9 +28,11 @@ class MegaSena(Base):
     acumulado_sorteio_especial_mega_da_virada: Mapped[Optional[str]]
     observacao: Mapped[Optional[str]]
 
-    # Retorna instância da própria classe para salvar no banco
     @classmethod
     def from_csv(cls, index: int, row: Series):
+        """
+        Retorna instância da própria classe para salvar no banco
+        """
         return cls(
             concurso=index,
             data_do_sorteio=row["Data do Sorteio"],

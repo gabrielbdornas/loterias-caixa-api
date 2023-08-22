@@ -1,6 +1,7 @@
 import click
 import pandas as pd
 from flask.cli import AppGroup
+
 from app.models import MegaSena
 
 MEGA_SENA_PATH = "data/csv/Mega-Sena.csv"

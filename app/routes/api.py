@@ -1,7 +1,7 @@
-from flask import Blueprint
-from app.models import mega_sena as model
-from flask import jsonify
-from app.schemas import mega_sena as schema
+from flask import Blueprint, jsonify
+
+from app.models import MegaSena
+from app.schemas import MegaSenaSchema
 
 api_bp = Blueprint("api", __name__)
 
@@ -16,7 +16,17 @@ def health_check():
 
 @api_bp.get("/mega-senas")
 def get_mega_sena():
-    mega_sena = model.MegaSena()
-    mega_senas = mega_sena.query.all()
-    schemas = schema.MegaSenaSchema(many=True)
-    return jsonify(schemas.dump(mega_senas)), 200
+    mega_senas = MegaSena.find_all()
+    schema = MegaSenaSchema(many=True)
+    return jsonify(schema.dump(mega_senas))
+
+
+@api_bp.get("/mega-senas/<int:id>")
+def get_mega_sena_teste(id: int):
+    mega_sena = MegaSena.find_by_id(id)
+
+    if mega_sena is None:
+        return {"message": "Jogo não encontrado"}, 404
+
+    schema = MegaSenaSchema()
+    return jsonify(schema.dump(mega_sena))

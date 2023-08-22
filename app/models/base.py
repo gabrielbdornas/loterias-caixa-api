@@ -47,6 +47,14 @@ class Base(db.Model):
         stmt = select(cls).where(cls.id == id)
         return db.session.execute(stmt).scalar()
 
+    @classmethod
+    def find_all(cls):
+        """
+        Retorna todos os objetos.
+        """
+        stmt = select(cls)
+        return db.session.scalars(stmt).all()
+
     def save(self):
         """
         Insere ou atualiza um objeto no banco de dados.
