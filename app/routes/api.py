@@ -1,7 +1,7 @@
 from flask import Blueprint
 from app.models import MegaSena
 from flask import jsonify
-from app.schemas import mega_sena as schema
+from app.schemas.mega_sena import MegaSenaSchema
 
 api_bp = Blueprint("api", __name__)
 
