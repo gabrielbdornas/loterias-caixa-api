@@ -18,5 +18,5 @@ def health_check():
 def get_mega_sena():
     mega_sena = MegaSena()
     mega_senas = mega_sena.query.all()
-    schemas = schema.MegaSenaSchema(many=True)
+    schema = MegaSenaSchema(many=True)
     return jsonify(schemas.dump(mega_senas)), 200
