@@ -1,5 +1,5 @@
 from flask import Blueprint
-from app.models import mega_sena as model
+from app.models import MegaSena
 from flask import jsonify
 from app.schemas import mega_sena as schema
 
