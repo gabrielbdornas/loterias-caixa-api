@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_migrate import Migrate
-from app.models.mega_sena import MegaSena
+from app.models import MegaSena
 
 from app.config import config
 from app.cli import seed_cli
