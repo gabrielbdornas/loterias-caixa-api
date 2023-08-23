@@ -4,5 +4,5 @@ from app.models import MegaSena
 
 class MegaSenaSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
-        model = mega_sena.MegaSena()
+        model = MegaSena()
         load_instance = True
