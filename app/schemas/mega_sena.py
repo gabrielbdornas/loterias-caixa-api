@@ -1,5 +1,5 @@
 from app.schemas import ma
-from app.models import mega_sena
+from app.models import MegaSena
 
 
 class MegaSenaSchema(ma.SQLAlchemyAutoSchema):
