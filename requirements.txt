@@ -19,6 +19,7 @@ MarkupSafe==2.1.3
 marshmallow==3.20.1
 mypy-extensions==1.0.0
 packaging==23.1
+pandas==2.0.3
 pathspec==0.11.2
 platformdirs==3.10.0
 pluggy==1.2.0
@@ -30,3 +31,7 @@ python-dotenv==1.0.0
 SQLAlchemy==2.0.19
 typing_extensions==4.7.1
 Werkzeug==2.3.6
+urllib3
+requests
+pandas
+frictionless

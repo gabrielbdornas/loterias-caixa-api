@@ -1,8 +1,5 @@
-from typing import Type, Self, Optional
-
 from sqlalchemy import select
 from sqlalchemy.orm import Mapped, mapped_column
-
 from app.db import db
 
 
@@ -33,18 +30,30 @@ class Base(db.Model):
     anotação de tipos com `Mapped` e definindo atributos das colunas usando `mapped_column`.
 
     [Referência ORM](https://docs.sqlalchemy.org/en/20/orm/quickstart.html)
+
+    `__abstract__ = True` diz pro SQLAlchemy que a classe Base não representa uma tabela do banco e que suas propriedades e métodos devem ser herdados.
+
+    [Referência] https://stackoverflow.com/questions/22976445/how-do-i-declare-a-base-model-class-in-flask-sqlalchemy
     """
 
     __abstract__ = True
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
 
     @classmethod
-    def find_by_id(cls: Type[Self], id: int) -> Optional[Self]:
+    def find_by_id(cls, id: int):
         """
         Busca um objeto com base no `id`.
         """
         stmt = select(cls).where(cls.id == id)
         return db.session.execute(stmt).scalar()
+
+    @classmethod
+    def find_all(cls):
+        """
+        Retorna todos os objetos.
+        """
+        stmt = select(cls)
+        return db.session.scalars(stmt).all()
 
     def save(self):
         """
