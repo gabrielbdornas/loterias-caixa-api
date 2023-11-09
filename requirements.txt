@@ -6,9 +6,10 @@ click==8.1.6
 dnspython==2.4.1
 email-validator==2.0.0.post2
 Flask==2.3.2
+flask-marshmallow==0.15.0
 Flask-Migrate==4.0.4
 Flask-SQLAlchemy==3.0.5
-greenlet==2.0.2
+greenlet==3.0.1
 gunicorn==21.2.0
 idna==3.4
 iniconfig==2.0.0
@@ -18,6 +19,7 @@ Mako==1.2.4
 MarkupSafe==2.1.3
 marshmallow==3.20.1
 mypy-extensions==1.0.0
+numpy==1.26.1
 packaging==23.1
 pandas==2.0.3
 pathspec==0.11.2
@@ -27,11 +29,11 @@ pydantic==2.1.1
 pydantic-settings==2.0.2
 pydantic_core==2.4.0
 pytest==7.4.0
+python-dateutil==2.8.2
 python-dotenv==1.0.0
+pytz==2023.3.post1
+six==1.16.0
 SQLAlchemy==2.0.19
 typing_extensions==4.7.1
+tzdata==2023.3
 Werkzeug==2.3.6
-urllib3
-requests
-pandas
-frictionless
